@@ -19,8 +19,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        observeConnectionChanges(selector: #selector(connectionChanged))
     }
-
-
+    
+    @objc func connectionChanged() {
+        self.connectionStatusValue.text = self.isConnected ? "Connected" : "Not Connected"
+        self.connectionStatusValue.textColor = self.isConnected ? .green : .red
+        
+        self.connectionIsExpensiveValue.text = self.isExpensive ? "Expensive" : "Not so expensive"
+        self.connectionIsExpensiveValue.textColor = self.isExpensive ? .green : .red
+        
+        self.connectionTypeValue.text = self.connectionType
+    }
 }
 
